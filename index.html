@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">		
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div id="splash" style="display: block;">
+			<h1>Treinamento Phonegap</h1>
+			<img width="100%" src="http://sierrafire.cr.usgs.gov/images/loading.gif" />
+        </div>	
+        <div id="home" style="display: none;">
+			<h1>Treinamento Phonegap</h1>
+			<ul class="list-group">
+			  <li class="list-group-item" onclick="mudarPagina('dialogos', 'home')"><span class="badge">></span>Diálogos</li>
+			  <li class="list-group-item" onclick="mudarPagina('notificacoes', 'home')"><span class="badge">></span>Notificações</li>
+			  <li class="list-group-item" onclick="mudarPagina('camera', 'home')"><span class="badge">></span>Câmera</li>
+			  <li class="list-group-item" onclick="mudarPagina('bussola', 'home'); abrirBussola()"><span class="badge">></span>Bússola</li>
+			</ul>
+        </div>
+		<div id="dialogos" style="display: none;">
+			<ul class="list-group">
+			  <li class="list-group-item" onclick="mudarPagina('home', 'dialogos')"><span class="badge pull-left"><</span>Voltar</li>
+			</ul>		
+			<label>Diálogos</label>
+			<div>
+				<button class="btn center-block" style="width: 100%" onclick="alert('oi')">Alerta</button>
+				<br />
+				<button class="btn center-block" style="width: 100%" onclick="confirm('teste')">Confirmar</button>
+				<br />				
+			</div>
+		</div>
+		<div id="notificacoes" style="display: none;">
+			<ul class="list-group">
+			  <li class="list-group-item" onclick="mudarPagina('home', 'notificacoes')"><span class="badge pull-left"><</span>Voltar</li>
+			</ul>	
+			<label>Navigator.notification</label>
+			<div>
+				<label>Javascript</label>
+				<br />
+				<button class="btn center-block" style="width: 100%" onclick="alert('oi')">alert()</button>
+				<br />
+				<button class="btn center-block" style="width: 100%" onclick="confirm('teste')">confirm()</button>				
+			</div>			
+			<div>
+				<label>Nativo</label>
+				<br />
+				<button class="btn center-block" style="width: 100%" onclick="navigator.notification.alert('oi')">alert()</button>
+				<br />
+				<button class="btn center-block" style="width: 100%" onclick="navigator.notification.confirm('teste')">confirm()</button>
+				<br />
+				<button class="btn center-block" style="width: 100%" onclick="navigator.notification.beep(1)">beep()</button>
+				<br />
+				<button class="btn center-block" style="width: 100%" onclick="navigator.notification.prompt()">prompt()</button>				
+			</div>						
+		</div>		
+		<div id="camera" style="display: none;">
+			<ul class="list-group">
+			  <li class="list-group-item" onclick="mudarPagina('home', 'camera')"><span class="badge pull-left"><</span>Voltar</li>
+			</ul>	
+			<label>Navigator.camera</label>
+			<div class="form-group">
+				<label for="selOrigem">Origem:</label>
+				<select class="form-control" id="selOrigem">
+					<option value="camera">Câmera</option>
+					<option value="biblioteca">Biblioteca</option>
+				</select>
+				<br />
+				<label for="selQualidade">Qualidade:</label>
+				<select class="form-control" id="selQualidade">
+					<option value="25">25</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+				<br />
+				<label for="selEncoding">Encoding:</label>
+				<select class="form-control" id="selEncoding">
+					<option>JPG</option>
+					<option>PNG</option>
+				</select>
+				<br />
+				<button class="btn center-block" style="width: 100%" onclick="tirarFoto()">getPicture()</button>				
+				<br />
+				<img id="imgMinhaImagem" width="100%" src="https://lh5.googleusercontent.com/-VuSUSgdSz9w/VNExvlWxVWI/AAAAAAAAg2s/0IDF_Sx7atM/h400/semImagem%5B1%5D.jpg" />
+			</div>	
+		</div>
+		<div id="bussola" style="display: none;">
+			<ul class="list-group">
+			  <li class="list-group-item" onclick="mudarPagina('home', 'bussola')"><span class="badge pull-left"><</span>Voltar</li>
+			</ul>	
+			<label>Navigator.compass</label>
+			<div>
+				<button class="btn center-block" style="width: 100%" onclick="pegarGraus()">getCurrentHeading()</button>	
+				<button class="btn center-block" style="width: 100%" onclick="limparBussola()">clearWatch()</button>	
+				
+				<h1 id="lblmagneticHeading"></h1>		
+				<h1 id="lbltrueHeading"></h1>		
+				<h1 id="lblheadingAccuracy"></h1>		
+				<h1 id="lbltimestamp"></h1>		
+				<br />
+				<h1 id="lblBussola"></h1>							
+				<br />
+				<img id="imgBussola" width="100%" />
+			</div>			
+		</div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>		
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
